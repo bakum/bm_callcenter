@@ -1,0 +1,10 @@
+{
+
+    "schema": "divas",
+    "user": "root",
+    "logging": true,
+    "password": "!stigmata70",
+    "host": "localhost",
+    "port": "3306"
+
+}

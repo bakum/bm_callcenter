@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+var debug = require('debug')('generated-express-app');
+var app = require('../callcenter');
+var https = require('https')
+    , fs = require('fs')
+    , privateKey = fs.readFileSync('sslcert/server.key').toString()
+    , certificate = fs.readFileSync('sslcert/ssl-cert.crt').toString()
+    , credentials = {key: privateKey, cert: certificate}
+
+app.set('port', process.env.PORT || 3008);
+app.set('ports', process.env.PORT || 3009);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+  console.log("Express server listening on port " + app.get('port'));
+});
+https.createServer(credentials, app).listen(app.get('ports'), function () {
+    console.log('Express https server listening on port ' + app.get('ports'));
+});
