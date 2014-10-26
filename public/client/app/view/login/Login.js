@@ -9,35 +9,51 @@ Ext.define("client.view.login.Login",{
 
     controller: 'login',
     bodyPadding: 10,
-    title: 'Login Window',
+    title: 'Авторизация',
     closable: false,
     autoShow: true,
 
     items: {
         xtype: 'form',
+        itemId: 'loginform',
+        enableKeyEvents:true,
         reference: 'form',
         items: [{
             xtype: 'textfield',
             name: 'username',
-            fieldLabel: 'Username',
+            itemId: 'username',
+            fieldLabel: 'Логин',
+            emptyText: 'username',
             allowBlank: false
         }, {
             xtype: 'textfield',
             name: 'password',
+            itemId: 'password',
             inputType: 'password',
-            fieldLabel: 'Password',
+            fieldLabel: 'Пароль',
+            emptyText: 'password',
             allowBlank: false
         }, {
             xtype: 'displayfield',
             hideEmptyLabel: false,
-            value: 'Enter any non-blank password'
+            value: 'Введите имя пользователя и пароль'
         }],
         buttons: [{
             text: 'Login',
+            itemId: 'login-button',
             formBind: true,
             listeners: {
                 click: 'onLoginClick'
             }
-        }]
+        }],
+        listeners:{
+            specialKey: function(field, el)
+            {
+                if(el.getKey() == Ext.EventObject.ENTER)
+                {
+                    Ext.getCmp('login-button').fireEvent('click');
+                }
+            }
+        }
     }
 });

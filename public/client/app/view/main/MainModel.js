@@ -8,7 +8,63 @@ Ext.define('client.view.main.MainModel', {
 
     data: {
         name: 'client'
-    }
+    },
 
-    //TODO - add data, formulas and/or methods to support your view
-});
+    stores: {
+        kontragents: {
+            model: 'Kontragents',
+            autoLoad: true,
+            autoSync: true,
+            autoDestroy: true,
+            pageSize: 20,
+            sorters: [{
+                property: 'fullname',
+                direction: 'ASC'
+            }],
+            proxy: {
+                type: 'rest',
+                url: '/directapi/kontragents',
+                appendId: true,
+                reader: {
+                    type: 'json',
+                    rootProperty: 'setlist',
+                    totalProperty: 'totalCount'
+                },
+
+                writer: {
+                    type: 'json',
+                    encode: false
+                }
+            },
+            listeners: {
+                write: function (store, operation) {
+                    var record = operation.getRecords()[0],
+                        name = Ext.String.capitalize(operation.action),
+                        verb;
+
+
+                    if (name == 'Destroy') {
+                        //record = operation.records[0];
+                        verb = 'Удалена';
+                    } else if (name == 'Create') {
+                        store.reload();
+                        verb = 'Добавлена';
+                        //record = operation.records[0];
+
+                    } else {
+                        verb = 'Отредактирована';
+                    };
+                    var msg = Ext.String.format("{0} запись: {1}", verb, record.getId());
+                    Ext.toast({
+                        title: name,
+                        html: msg,
+                        align: 't',
+                        bodyPadding: 10
+                    });
+                    //Ext.ccenter.msg(name, Ext.String.format("{0} record: {1}", verb, record.getId()));
+                }
+            }
+        }
+    }
+})
+;

@@ -139,7 +139,7 @@ module.exports = function (options) {
     };
 
     database.models = mod;
-    database.sync(false, fillfullTable);
+    //database.sync(false, fillfullTable);
 
     return database;
 };

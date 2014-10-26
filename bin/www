@@ -5,10 +5,13 @@ var https = require('https')
     , fs = require('fs')
     , privateKey = fs.readFileSync('sslcert/server.key').toString()
     , certificate = fs.readFileSync('sslcert/ssl-cert.crt').toString()
-    , credentials = {key: privateKey, cert: certificate}
+    , credentials = {key: privateKey, cert: certificate};
+var db_options = require('../models/options.js')
+    , db = require('../models/database.js')(db_options());
 
 app.set('port', process.env.PORT || 3008);
 app.set('ports', process.env.PORT || 3009);
+db.sync(process.env.FORCE_CREATE || false);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);

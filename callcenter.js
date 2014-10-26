@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var flash = require('connect-flash');
 
-var routes = require('./routes/index');
+var routes = require('./routes/index'),
+    directapi = require('./routes/api/directapi');
 
 var app = express();
 
@@ -28,9 +28,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-app.use(flash());
 
 app.use('/', routes);
+app.use('/directapi', directapi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

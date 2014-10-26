@@ -27,11 +27,28 @@ Ext.define('client.view.main.Main', {
     items: [
         {
             region: 'north',
-            xtype: 'component',
+            xtype: 'container',
             cls: 'appBanner',
             padding: 10,
             height: 70,
-            html: '<div class="logo"></div><h2>Asterisk BM Call Center</h2>'
+            html: '<div class="logo"></div><h2>Asterisk BM Call Center</h2>',
+            layout: {
+                type: 'hbox',
+                align: 'middle'
+            },
+            items: {
+                xtype: 'component',
+                id: 'app-header-username',
+                cls: 'app-header-text',
+                //html: '<h3>Username</h3>',
+                //bind: '{currentUser.name}',
+                listeners: {
+                    click: 'onClickUserName',
+                    element: 'el'
+                },
+                margin: '0 10 0 0'
+            }
+
         },
         {
             xtype: 'panel',
@@ -43,11 +60,11 @@ Ext.define('client.view.main.Main', {
             width: 250,
             split: true,
             collapsible: true,
-            collapsed: true,
+            collapsed: false,
             tbar: [
                 {
-                    text: 'Button',
-                    handler: 'onClickButton'
+                    text: 'Logout',
+                    handler: 'onLogout'
                 }
             ]
         },
@@ -56,8 +73,107 @@ Ext.define('client.view.main.Main', {
             xtype: 'tabpanel',
             items: [
                 {
-                    title: 'Tab 1',
-                    html: '<h2>Content appropriate for the current navigation.</h2>'
+                    title: 'Клиенты',
+                    layout: 'fit',
+                    items: [
+                        {
+                            xtype: 'grid',
+                            reference: 'kon_grid',
+                            plugins: [
+                                Ext.create('Ext.grid.plugin.RowEditing', {
+                                    listeners: {
+                                        cancelEdit: 'onCancelEdit'
+                                    },
+                                    clicksToMoveEditor: 2,
+                                    reference: 'rowEdit',
+                                    useNull: false,
+                                    autoCancel: true,
+                                    pluginId: 'rowediting',
+                                    saveBtnText: 'Сохранить',
+                                    cancelBtnText: 'Отменить',
+                                    errorSummary: false
+                                })
+                            ],
+                            //title:"Клиенты",
+                            //store:Ext.create('client.store.Kontragents'),
+                            bind: '{kontragents}',
+                            columns: [
+                                {
+                                    text: 'ID',
+                                    hidden: true,
+                                    xtype: 'numbercolumn', align: 'right',
+                                    flex: 1,
+                                    sortable: true,
+                                    dataIndex: 'id',
+                                    editor: {xtype: 'numberfield', allowBlank: true}
+                                },
+                                {
+                                    text: 'Наименование',
+                                    hidden: false,
+                                    flex: 1,
+                                    sortable: true,
+                                    dataIndex: 'fullname',
+                                    editor: {xtype: 'textfield', allowBlank: false}
+                                },
+                                {
+                                    text: 'ИНН',
+                                    hidden: false,
+                                    flex: 1,
+                                    sortable: true,
+                                    dataIndex: 'inn',
+                                    editor: {xtype: 'textfield', allowBlank: true}
+                                },
+                                {
+                                    text: 'ОКПО',
+                                    hidden: false,
+                                    flex: 1,
+                                    sortable: true,
+                                    dataIndex: 'okpo',
+                                    editor: {xtype: 'textfield', allowBlank: true}
+                                }
+
+                            ],
+                            bbar: Ext.create('Ext.PagingToolbar', {
+                                pageSize: 20,
+                                bind: {
+                                    store: '{kontragents}'
+                                },
+                                //displayMsg: '{0} - {1} из {2}',
+                                displayInfo: true,
+                                plugins: Ext.create('Ext.ccenter.ProgressBarPager', {
+                                    width: 350,
+                                    pluginId: 'pager'
+                                })
+                            }),
+                            dockedItems: [
+                                {
+                                    xtype: 'toolbar',
+                                    items: [
+                                        {
+                                            text: 'Добавить',
+                                            iconCls: 'icon-user-add',
+                                            handler: 'onCreateRecord'
+                                        },
+                                        {
+                                            text: 'Удалить',
+                                            itemId: 'removeKontrag',
+                                            iconCls: 'icon-delete-user',
+                                            disabled: true,
+                                            handler: 'onClickDelete'
+                                        }
+                                    ]
+                                }
+                            ],
+                            listeners: {
+                                beforerender: function (component, b) {
+                                    var store = component.getBind().store.getValue();
+                                    //store.load();
+                                },
+                                selectionchange:'onSelection'
+
+                            }
+                        }
+                    ]
                 }
             ]
         }
