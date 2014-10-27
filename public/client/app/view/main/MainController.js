@@ -8,31 +8,8 @@
 Ext.define('client.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
-    requires: [
-        'Ext.MessageBox',
-        'Ext.window.Toast'
-    ],
-
     alias: 'controller.main',
 
-    onClickDelete: function () {
-        Ext.Msg.confirm('Подтверждение', 'Вы уверены?', 'onConfirm', this);
-    },
-
-    onConfirm: function (choice) {
-        if (choice == 'yes') {
-            var grid = this.lookupReference('kon_grid'),
-                sm = grid.getSelectionModel(),
-                store = grid.getBind().store.getValue(),
-                rowEditing = grid.getPlugin('rowediting');
-
-            rowEditing.cancelEdit();
-            store.remove(sm.getSelection());
-            if (store.getCount() > 0) {
-                sm.select(0);
-            }
-        }
-    },
     onLogout: function () {
         var values = {},
             self = this;
@@ -59,30 +36,35 @@ Ext.define('client.view.main.MainController', {
         });
     },
 
-    onCreateRecord: function () {
-        var grid = this.lookupReference('kon_grid'),
-            store = grid.getBind().store.getValue(),
-            rec = new client.model.Kontragents({
-                deleted:0,
-                ur_fiz:0
-            }),
-            rowEditing = grid.getPlugin('rowediting');
-
-        rowEditing.cancelEdit();
-        store.insert(0, rec);
-        rowEditing.startEdit(0, 0);
-    },
-
-    onCancelEdit: function(rowEditing, context) {
-        var grid = this.lookupReference('kon_grid'),
-            store = grid.getBind().store.getValue();
-        if (context.record.phantom) {
-            store.remove(context.record);
+    createTab: function (record, cfg) {
+        var nodeText = record,
+            tabPanel = this.lookupReference('main'),
+            tabBar = tabPanel.getTabBar(), // получаем тулбар вкладок на панели
+            tabIndex;
+        // обход по всем вкладкам и сравнение их текста с текстом нажатого узла
+        for (var i = 0; i < tabBar.items.length; i++) {
+            if (tabBar.items.get(i).getText() === nodeText) {
+                tabIndex = i;
+            }
         }
+
+        if (Ext.isEmpty(tabIndex)) {
+            cfg.closable = true;
+            tabPanel.add(cfg);
+            tabIndex = tabPanel.items.length - 1;
+        }
+
+        tabPanel.setActiveTab(tabIndex);
     },
 
-    onSelection: function(view, records){
-        var grid = this.lookupReference('kon_grid');
-        grid.down('#removeKontrag').setDisabled(!records.length);
+    onNavDblClick: function (tree, rec, item, index, e, options) {
+        var menuItem = rec.data.text;
+        if (menuItem === 'Контрагенты') {
+            this.createTab(menuItem, {
+                xtype: 'kontrgrid',
+                title: 'Контрагенты'
+            });
+        }
+
     }
 });

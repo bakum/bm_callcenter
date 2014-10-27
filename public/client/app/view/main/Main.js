@@ -41,7 +41,7 @@ Ext.define('client.view.main.Main', {
                 id: 'app-header-username',
                 cls: 'app-header-text',
                 //html: '<h3>Username</h3>',
-                //bind: '{currentUser.name}',
+                bind: '{currentUser.name}',
                 listeners: {
                     click: 'onClickUserName',
                     element: 'el'
@@ -56,11 +56,46 @@ Ext.define('client.view.main.Main', {
                 title: 'Navigation'
             },
             region: 'west',
-            html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
+            //html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
             width: 250,
             split: true,
             collapsible: true,
             collapsed: false,
+
+            items: [
+                {
+                    xtype: 'treepanel',
+                    rootVisible: false,
+                    store: Ext.create('Ext.data.TreeStore', {
+                        root: {
+                            text: "Navigation",
+                            expanded: true,
+                            children: [
+                                {
+                                    text: "Контрагенты",
+                                    leaf: true
+                                },
+                                {
+                                    text: "Листы дозвона",
+                                    leaf: true
+                                },
+                                {
+                                    text: "Настройки",
+                                    leaf: true
+                                },
+                                {
+                                    text: "Пользователи",
+                                    leaf: true
+                                }
+
+                            ]
+                        }
+                    }),
+                    listeners: {
+                        itemdblclick: 'onNavDblClick'
+                    }
+                }
+            ],
             tbar: [
                 {
                     text: 'Logout',
@@ -71,111 +106,23 @@ Ext.define('client.view.main.Main', {
         {
             region: 'center',
             xtype: 'tabpanel',
-            items: [
+            flex: 1,
+            reference: 'main',
+            plugins: [
                 {
-                    title: 'Клиенты',
-                    layout: 'fit',
-                    items: [
-                        {
-                            xtype: 'grid',
-                            reference: 'kon_grid',
-                            plugins: [
-                                Ext.create('Ext.grid.plugin.RowEditing', {
-                                    listeners: {
-                                        cancelEdit: 'onCancelEdit'
-                                    },
-                                    clicksToMoveEditor: 2,
-                                    reference: 'rowEdit',
-                                    useNull: false,
-                                    autoCancel: true,
-                                    pluginId: 'rowediting',
-                                    saveBtnText: 'Сохранить',
-                                    cancelBtnText: 'Отменить',
-                                    errorSummary: false
-                                })
-                            ],
-                            //title:"Клиенты",
-                            //store:Ext.create('client.store.Kontragents'),
-                            bind: '{kontragents}',
-                            columns: [
-                                {
-                                    text: 'ID',
-                                    hidden: true,
-                                    xtype: 'numbercolumn', align: 'right',
-                                    flex: 1,
-                                    sortable: true,
-                                    dataIndex: 'id',
-                                    editor: {xtype: 'numberfield', allowBlank: true}
-                                },
-                                {
-                                    text: 'Наименование',
-                                    hidden: false,
-                                    flex: 1,
-                                    sortable: true,
-                                    dataIndex: 'fullname',
-                                    editor: {xtype: 'textfield', allowBlank: false}
-                                },
-                                {
-                                    text: 'ИНН',
-                                    hidden: false,
-                                    flex: 1,
-                                    sortable: true,
-                                    dataIndex: 'inn',
-                                    editor: {xtype: 'textfield', allowBlank: true}
-                                },
-                                {
-                                    text: 'ОКПО',
-                                    hidden: false,
-                                    flex: 1,
-                                    sortable: true,
-                                    dataIndex: 'okpo',
-                                    editor: {xtype: 'textfield', allowBlank: true}
-                                }
-
-                            ],
-                            bbar: Ext.create('Ext.PagingToolbar', {
-                                pageSize: 20,
-                                bind: {
-                                    store: '{kontragents}'
-                                },
-                                //displayMsg: '{0} - {1} из {2}',
-                                displayInfo: true,
-                                plugins: Ext.create('Ext.ccenter.ProgressBarPager', {
-                                    width: 350,
-                                    pluginId: 'pager'
-                                })
-                            }),
-                            dockedItems: [
-                                {
-                                    xtype: 'toolbar',
-                                    items: [
-                                        {
-                                            text: 'Добавить',
-                                            iconCls: 'icon-user-add',
-                                            handler: 'onCreateRecord'
-                                        },
-                                        {
-                                            text: 'Удалить',
-                                            itemId: 'removeKontrag',
-                                            iconCls: 'icon-delete-user',
-                                            disabled: true,
-                                            handler: 'onClickDelete'
-                                        }
-                                    ]
-                                }
-                            ],
-                            listeners: {
-                                beforerender: function (component, b) {
-                                    var store = component.getBind().store.getValue();
-                                    //store.load();
-                                },
-                                selectionchange:'onSelection'
-
-                            }
-                        }
-                    ]
+                    ptype: 'tabscrollermenu'
+                },
+                {
+                    ptype: 'tabclosemenu',
+                    closeTabText: 'Закрыть вкладку',
+                    closeOthersTabsText: 'Закрыть другие вкладки',
+                    closeAllTabsText: 'Закрыть все вкладки'
                 }
-            ]
+            ],
+            items: [{
+                title: 'Dashboard',
+                html: '<h2>asdasdasaasdasda</h2>'
+            }]
         }
     ]
 });
