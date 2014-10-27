@@ -4,7 +4,8 @@ Ext.define('client.view.kontr.Kontr', {
 
     requires: [
         'client.view.kontr.KontrController',
-        'client.view.kontr.KontrModel'
+        'client.view.kontr.KontrModel',
+        'client.ProgressBarPager'
     ],
 
     controller: 'kontr',
@@ -36,6 +37,15 @@ Ext.define('client.view.kontr.Kontr', {
     ],
     bind: '{kontragents}',
     columns: [
+        {
+            xtype: 'actioncolumn',
+            width: 20,
+            handler: 'onKontrClick',
+            items: [{
+                tooltip: 'Просмотр абонента',
+                iconCls: 'ticket'
+            }]
+        },
         {
             text: 'ID',
             hidden: true,
@@ -78,7 +88,7 @@ Ext.define('client.view.kontr.Kontr', {
         },   // same store GridPanel is using
         dock: 'bottom',
         displayInfo: true,
-        plugins: Ext.create('Ext.ccenter.ProgressBarPager', {
+        plugins: Ext.create('client.ProgressBarPager', {
             width: 350,
             pluginId: 'pager'
         })
@@ -102,12 +112,6 @@ Ext.define('client.view.kontr.Kontr', {
         }
     ],
     listeners: {
-        /*beforerender: function (component, b) {
-         var store = component.getBind().store.getValue();
-         //store.load();
-         },*/
         selectionchange: 'onSelection'
-        //scope:'controller'
-
     }
 })

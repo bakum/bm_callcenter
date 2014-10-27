@@ -26,6 +26,7 @@ Ext.define('client.view.kontr.KontrController', {
         rowEditing.cancelEdit();
         store.insert(0, rec);
         rowEditing.startEdit(0, 0);
+        this.getView().down('#removeKontrag').setDisabled(true);
     },
     onClickDelete: function () {
         Ext.Msg.confirm('Подтверждение', 'Вы уверены?', 'onConfirm', this);
@@ -49,5 +50,9 @@ Ext.define('client.view.kontr.KontrController', {
     onSelection: function(view, records){
         //var grid = this.getView();
         this.getView().down('#removeKontrag').setDisabled(!records.length);
+    },
+
+    onKontrClick: function(view, rowIdx, colIdx, item, e, rec){
+        this.fireViewEvent('viewkontragent', this.getView(), rec);
     }
 })

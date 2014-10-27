@@ -28,26 +28,29 @@ Ext.define('client.view.main.Main', {
         {
             region: 'north',
             xtype: 'container',
-            cls: 'appBanner',
-            padding: 10,
-            height: 70,
-            html: '<div class="logo"></div><h2>Asterisk BM Call Center</h2>',
+            id: 'app-header',
+            padding: 3,
+            height: 52,
             layout: {
                 type: 'hbox',
                 align: 'middle'
             },
-            items: {
+            items: [{
+                xtype: 'component',
+                id: 'app-header-logo'
+            },{
+                xtype: 'component',
+                cls: 'app-header-text',
+                html: 'Asterisk BM Call Center',
+                flex: 1
+            },{
                 xtype: 'component',
                 id: 'app-header-username',
                 cls: 'app-header-text',
-                //html: '<h3>Username</h3>',
-                bind: '{currentUser.name}',
-                listeners: {
-                    click: 'onClickUserName',
-                    element: 'el'
-                },
+                html: 'sysdba',
+                //bind: '{currentUser.name}',
                 margin: '0 10 0 0'
-            }
+            }]
 
         },
         {
@@ -72,21 +75,39 @@ Ext.define('client.view.main.Main', {
                             expanded: true,
                             children: [
                                 {
-                                    text: "Контрагенты",
-                                    leaf: true
-                                },
-                                {
-                                    text: "Листы дозвона",
-                                    leaf: true
+                                    text: "Call center",
+                                    leaf: false,
+                                    expanded: true,
+                                    children: [{
+                                        text: "Абоненты",
+                                        leaf: true
+                                    },
+                                        {
+                                            text: "Листы дозвона",
+                                            leaf: true
+                                        }
+                                    ]
                                 },
                                 {
                                     text: "Настройки",
-                                    leaf: true
-                                },
-                                {
-                                    text: "Пользователи",
-                                    leaf: true
+                                    leaf: false,
+                                    expanded: true,
+                                    children: [
+                                        {
+                                            text: "Asterisk",
+                                            leaf: true
+                                        },
+                                        {
+                                            text: "Подразделения",
+                                            leaf: true
+                                        },
+                                        {
+                                            text: "Пользователи",
+                                            leaf: true
+                                        }
+                                    ]
                                 }
+
 
                             ]
                         }
@@ -121,7 +142,11 @@ Ext.define('client.view.main.Main', {
             ],
             items: [{
                 title: 'Dashboard',
-                html: '<h2>asdasdasaasdasda</h2>'
+                bodyCls: 'app-dashboard',
+                html: '<h2>asdasdasaasdasda</h2>',
+                listeners: {
+                    viewkontragent: 'onViewKontragent'
+                }
             }]
         }
     ]

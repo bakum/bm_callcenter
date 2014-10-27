@@ -59,12 +59,19 @@ Ext.define('client.view.main.MainController', {
 
     onNavDblClick: function (tree, rec, item, index, e, options) {
         var menuItem = rec.data.text;
-        if (menuItem === 'Контрагенты') {
+        if (menuItem === 'Абоненты') {
             this.createTab(menuItem, {
                 xtype: 'kontrgrid',
-                title: 'Контрагенты'
+                listeners: {
+                    viewkontragent: 'onViewKontragent'
+                },
+                title: 'Абоненты'
             });
         }
+
+    },
+
+    onViewKontragent: function(view, rec) {
 
     }
 });

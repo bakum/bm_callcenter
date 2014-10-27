@@ -117,9 +117,6 @@
             "path": "${ext.dir}/build/ext-all-rtl-debug.js"
         },
         {
-            "path": "msgext.js"
-        },
-        {
             "path": "app.js",
             "bundle": true
         }
