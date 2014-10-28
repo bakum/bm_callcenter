@@ -38,12 +38,12 @@ Ext.define('client.view.main.Main', {
             items: [{
                 xtype: 'component',
                 id: 'app-header-logo'
-            },{
+            }, {
                 xtype: 'component',
                 cls: 'app-header-text',
                 html: 'Asterisk BM Call Center',
                 flex: 1
-            },{
+            }, {
                 xtype: 'component',
                 id: 'app-header-username',
                 cls: 'app-header-text',
@@ -78,12 +78,21 @@ Ext.define('client.view.main.Main', {
                                     text: "Call center",
                                     leaf: false,
                                     expanded: true,
-                                    children: [{
-                                        text: "Абоненты",
-                                        leaf: true
-                                    },
+                                    children: [
+                                        {
+                                            text: "Панель управления",
+                                            leaf: true
+                                        },
+                                        {
+                                            text: "Абоненты",
+                                            leaf: true
+                                        },
                                         {
                                             text: "Листы дозвона",
+                                            leaf: true
+                                        },
+                                        {
+                                            text: "Импорт",
                                             leaf: true
                                         }
                                     ]
@@ -104,8 +113,16 @@ Ext.define('client.view.main.Main', {
                                         {
                                             text: "Пользователи",
                                             leaf: true
+                                        },
+                                        {
+                                            text: "Группы",
+                                            leaf: true
                                         }
                                     ]
+                                },
+                                {
+                                    text: "Администратор",
+                                    leaf: true
                                 }
 
 

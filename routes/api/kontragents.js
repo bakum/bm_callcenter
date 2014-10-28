@@ -5,15 +5,13 @@ var db_options = require('../../models/options.js')
 var Kontragents = {
 
     create: function (req, res) {
-        if (req.body.id !== null) {
+        req.body.id = null;
+        Kontr.create(req.body).success(function (kontr) {
+            res.send({status: 'success'})
+        }).error(function (err) {
             res.status(416).end();
-        } else {
-            Kontr.create(req.body).success(function (kontr) {
-                res.send({status: 'success'})
-            }).error(function (err) {
-                res.status(416).end();
-            })
-        }
+        })
+
     },
 
     list: function (req, res) {
@@ -44,12 +42,12 @@ var Kontragents = {
         })
     },
 
-    del: function(req,res){
+    del: function (req, res) {
         Kontr.find(req.params.id).success(function (anotherKontr) {
             if (anotherKontr) {
                 anotherKontr.destroy().success(function () {
-                    res.send({status:'success'})
-                }).error(function(err){
+                    res.send({status: 'success'})
+                }).error(function (err) {
                     res.status(416).end();
                 });
             } else {

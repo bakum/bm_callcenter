@@ -18,6 +18,7 @@ Ext.define('client.view.kontr.KontrController', {
         var grid = this.getView(),
             store = grid.getBind().store.getValue(),
             rec = new client.model.Kontragents({
+                id:null,
                 deleted:0,
                 ur_fiz:0
             }),
@@ -43,7 +44,8 @@ Ext.define('client.view.kontr.KontrController', {
             store.remove(sm.getSelection());
             if (store.getCount() > 0) {
                 sm.select(0);
-            }
+            };
+            store.sync();
         }
     },
 

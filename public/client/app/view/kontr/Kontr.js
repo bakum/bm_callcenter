@@ -23,6 +23,9 @@ Ext.define('client.view.kontr.Kontr', {
                     if (context.record.phantom) {
                         store.remove(context.record);
                     }
+                },
+                edit : function(rowEditing, context){
+                    rowEditing.grid.getBind().store.getValue().sync();
                 }
             },
             clicksToMoveEditor: 2,
@@ -32,14 +35,14 @@ Ext.define('client.view.kontr.Kontr', {
             pluginId: 'rowediting',
             saveBtnText: 'Сохранить',
             cancelBtnText: 'Отменить',
-            errorSummary: false
+            errorSummary: true
         })
     ],
     bind: '{kontragents}',
     columns: [
         {
             xtype: 'actioncolumn',
-            width: 20,
+            width: 50,
             handler: 'onKontrClick',
             items: [{
                 tooltip: 'Просмотр абонента',
@@ -49,14 +52,17 @@ Ext.define('client.view.kontr.Kontr', {
         {
             text: 'ID',
             hidden: true,
-            xtype: 'numbercolumn', align: 'right',
-            flex: 1,
-            sortable: true,
-            dataIndex: 'id',
-            editor: {xtype: 'numberfield', allowBlank: true}
+            xtype: 'numbercolumn',
+            align: 'right',
+            format:'0',
+            /*flex: 1,
+            sortable: true,*/
+            dataIndex: 'id'
+            //editor: {xtype: 'numberfield', allowBlank: true}
         },
         {
             text: 'Наименование',
+            header: "Наименование",
             hidden: false,
             flex: 1,
             sortable: true,

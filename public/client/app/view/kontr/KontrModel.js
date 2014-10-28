@@ -10,9 +10,9 @@ Ext.define('client.view.kontr.KontrModel', {
         kontragents: {
             model: 'Kontragents',
             autoLoad: true,
-            autoSync: true,
+            autoSync: false,
             autoDestroy: true,
-            pageSize: 20,
+            pageSize: 15,
             sorters: [{
                 property: 'fullname',
                 direction: 'ASC'

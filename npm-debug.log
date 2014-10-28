@@ -1,0 +1,176 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink /usr/bin/node
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/home/bakum/Documents/node_projects/bmcallcenter',
+6 verbose install   [ 'express',
+6 verbose install     'body-parser',
+6 verbose install     'cookie-parser',
+6 verbose install     'morgan',
+6 verbose install     'serve-favicon',
+6 verbose install     'debug',
+6 verbose install     'ejs',
+6 verbose install     'nconf',
+6 verbose install     'sequelize',
+6 verbose install     'express-session',
+6 verbose install     'crypto',
+6 verbose install     'formidable',
+6 verbose install     'asterisk-manager',
+6 verbose install     'excel',
+6 verbose install     'setimmediate',
+6 verbose install     'readable-stream' ] ]
+7 info preinstall Asterisk_BM_CallCenter@0.0.1
+8 warn package.json crypto@0.0.3 crypto is also the name of a node core module.
+9 verbose readDependencies using package.json deps
+10 verbose already installed skipping express@~4.9.0 /home/bakum/Documents/node_projects/bmcallcenter
+11 verbose already installed skipping body-parser@~1.8.1 /home/bakum/Documents/node_projects/bmcallcenter
+12 verbose already installed skipping cookie-parser@~1.3.3 /home/bakum/Documents/node_projects/bmcallcenter
+13 verbose already installed skipping morgan@~1.3.0 /home/bakum/Documents/node_projects/bmcallcenter
+14 verbose already installed skipping serve-favicon@~2.1.3 /home/bakum/Documents/node_projects/bmcallcenter
+15 verbose already installed skipping debug@~2.0.0 /home/bakum/Documents/node_projects/bmcallcenter
+16 verbose already installed skipping ejs@~0.8.5 /home/bakum/Documents/node_projects/bmcallcenter
+17 verbose already installed skipping nconf@~0.6.7 /home/bakum/Documents/node_projects/bmcallcenter
+18 verbose already installed skipping sequelize@2.0.0-rc2 /home/bakum/Documents/node_projects/bmcallcenter
+19 verbose already installed skipping express-session@1.9.1 /home/bakum/Documents/node_projects/bmcallcenter
+20 verbose already installed skipping crypto@0.0.3 /home/bakum/Documents/node_projects/bmcallcenter
+21 verbose already installed skipping formidable@1.0.15 /home/bakum/Documents/node_projects/bmcallcenter
+22 verbose already installed skipping asterisk-manager@0.1.12 /home/bakum/Documents/node_projects/bmcallcenter
+23 verbose already installed skipping excel@0.1.1 /home/bakum/Documents/node_projects/bmcallcenter
+24 verbose already installed skipping setimmediate@* /home/bakum/Documents/node_projects/bmcallcenter
+25 verbose cache add [ 'readable-stream@*', null ]
+26 verbose cache add name=undefined spec="readable-stream@*" args=["readable-stream@*",null]
+27 verbose parsed url { protocol: null,
+27 verbose parsed url   slashes: null,
+27 verbose parsed url   auth: null,
+27 verbose parsed url   host: null,
+27 verbose parsed url   port: null,
+27 verbose parsed url   hostname: null,
+27 verbose parsed url   hash: null,
+27 verbose parsed url   search: null,
+27 verbose parsed url   query: null,
+27 verbose parsed url   pathname: 'readable-stream@*',
+27 verbose parsed url   path: 'readable-stream@*',
+27 verbose parsed url   href: 'readable-stream@*' }
+28 verbose cache add name="readable-stream" spec="*" args=["readable-stream","*"]
+29 verbose parsed url { protocol: null,
+29 verbose parsed url   slashes: null,
+29 verbose parsed url   auth: null,
+29 verbose parsed url   host: null,
+29 verbose parsed url   port: null,
+29 verbose parsed url   hostname: null,
+29 verbose parsed url   hash: null,
+29 verbose parsed url   search: null,
+29 verbose parsed url   query: null,
+29 verbose parsed url   pathname: '*',
+29 verbose parsed url   path: '*',
+29 verbose parsed url   href: '*' }
+30 verbose addNamed [ 'readable-stream', '*' ]
+31 verbose addNamed [ null, '*' ]
+32 silly lockFile 86cde00a-readable-stream readable-stream@*
+33 verbose lock readable-stream@* /home/bakum/.npm/86cde00a-readable-stream.lock
+34 silly addNameRange { name: 'readable-stream', range: '*', hasData: false }
+35 verbose request where is /readable-stream
+36 verbose request registry https://registry.npmjs.org/
+37 verbose request id a5ce283191364c21
+38 verbose url raw /readable-stream
+39 verbose url resolving [ 'https://registry.npmjs.org/', './readable-stream' ]
+40 verbose url resolved https://registry.npmjs.org/readable-stream
+41 verbose request where is https://registry.npmjs.org/readable-stream
+42 info trying registry request attempt 1 at 21:14:11
+43 verbose etag "EKXZ81XCOZBFB2OE9RM9RBPQ"
+44 http GET https://registry.npmjs.org/readable-stream
+45 http 304 https://registry.npmjs.org/readable-stream
+46 silly registry.get cb [ 304,
+46 silly registry.get   { date: 'Tue, 28 Oct 2014 19:14:31 GMT',
+46 silly registry.get     server: 'Apache',
+46 silly registry.get     via: '1.1 varnish',
+46 silly registry.get     'last-modified': 'Tue, 28 Oct 2014 19:13:51 GMT',
+46 silly registry.get     'cache-control': 'max-age=60',
+46 silly registry.get     etag: '"EKXZ81XCOZBFB2OE9RM9RBPQ"',
+46 silly registry.get     age: '49',
+46 silly registry.get     'x-served-by': 'cache-ams4129-AMS',
+46 silly registry.get     'x-cache': 'HIT',
+46 silly registry.get     'x-cache-hits': '3',
+46 silly registry.get     'x-timer': 'S1414523671.998041,VS0,VE0',
+46 silly registry.get     vary: 'Accept',
+46 silly registry.get     'content-length': '0',
+46 silly registry.get     'keep-alive': 'timeout=10, max=50',
+46 silly registry.get     connection: 'Keep-Alive' } ]
+47 verbose etag https://registry.npmjs.org/readable-stream from cache
+48 silly addNameRange number 2 { name: 'readable-stream', range: '*', hasData: true }
+49 silly addNameRange versions [ 'readable-stream',
+49 silly addNameRange   [ '0.0.1',
+49 silly addNameRange     '0.0.2',
+49 silly addNameRange     '0.0.3',
+49 silly addNameRange     '0.0.4',
+49 silly addNameRange     '0.1.0',
+49 silly addNameRange     '0.2.0',
+49 silly addNameRange     '0.3.0',
+49 silly addNameRange     '0.3.1',
+49 silly addNameRange     '1.0.0',
+49 silly addNameRange     '1.0.1',
+49 silly addNameRange     '1.0.2',
+49 silly addNameRange     '1.0.15',
+49 silly addNameRange     '1.0.17',
+49 silly addNameRange     '1.1.7',
+49 silly addNameRange     '1.1.8',
+49 silly addNameRange     '1.1.9',
+49 silly addNameRange     '1.0.24',
+49 silly addNameRange     '1.0.25',
+49 silly addNameRange     '1.1.10',
+49 silly addNameRange     '1.0.25-1',
+49 silly addNameRange     '1.1.11',
+49 silly addNameRange     '1.0.26',
+49 silly addNameRange     '1.0.26-1',
+49 silly addNameRange     '1.1.11-1',
+49 silly addNameRange     '1.0.26-2',
+49 silly addNameRange     '1.1.12',
+49 silly addNameRange     '1.0.26-3',
+49 silly addNameRange     '1.0.26-4',
+49 silly addNameRange     '1.1.12-1',
+49 silly addNameRange     '1.0.27-1',
+49 silly addNameRange     '1.1.13-1',
+49 silly addNameRange     '1.0.31',
+49 silly addNameRange     '1.1.13',
+49 silly addNameRange     '1.0.32',
+49 silly addNameRange     '1.0.32-1',
+49 silly addNameRange     '1.0.33-1',
+49 silly addNameRange     '1.0.33-2',
+49 silly addNameRange     '1.0.33' ] ]
+50 verbose addNamed [ 'readable-stream', '1.0.33' ]
+51 verbose addNamed [ '1.0.33', '1.0.33' ]
+52 silly lockFile f026aa23-readable-stream-1-0-33 readable-stream@1.0.33
+53 verbose lock readable-stream@1.0.33 /home/bakum/.npm/f026aa23-readable-stream-1-0-33.lock
+54 silly lockFile ba8805c5-tream-readable-stream-1-0-33-tgz https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz
+55 verbose lock https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz /home/bakum/.npm/ba8805c5-tream-readable-stream-1-0-33-tgz.lock
+56 verbose addRemoteTarball [ 'https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz',
+56 verbose addRemoteTarball   '3a360dd66c1b1d7fd4705389860eda1d0f61126c' ]
+57 info retry fetch attempt 1 at 21:14:32
+58 verbose fetch to= /tmp/npm-14143-pv31cXnC/registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz
+59 http GET https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz
+60 http 200 https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz
+61 silly lockFile ba8805c5-tream-readable-stream-1-0-33-tgz https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz
+62 silly lockFile ba8805c5-tream-readable-stream-1-0-33-tgz https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz
+63 silly lockFile f026aa23-readable-stream-1-0-33 readable-stream@1.0.33
+64 silly lockFile f026aa23-readable-stream-1-0-33 readable-stream@1.0.33
+65 silly lockFile 86cde00a-readable-stream readable-stream@*
+66 silly lockFile 86cde00a-readable-stream readable-stream@*
+67 error Error: EACCES, mkdir '/home/bakum/.npm/readable-stream/1.0.33'
+67 error  { [Error: EACCES, mkdir '/home/bakum/.npm/readable-stream/1.0.33']
+67 error   errno: 3,
+67 error   code: 'EACCES',
+67 error   path: '/home/bakum/.npm/readable-stream/1.0.33',
+67 error   parent: 'Asterisk_BM_CallCenter' }
+68 error Please try running this command again as root/Administrator.
+69 error System Linux 3.13.0-37-generic
+70 error command "/usr/bin/node" "/usr/bin/npm" "install"
+71 error cwd /home/bakum/Documents/node_projects/bmcallcenter
+72 error node -v v0.10.33
+73 error npm -v 1.4.28
+74 error path /home/bakum/.npm/readable-stream/1.0.33
+75 error code EACCES
+76 error errno 3
+77 error stack Error: EACCES, mkdir '/home/bakum/.npm/readable-stream/1.0.33'
+78 verbose exit [ 3, true ]

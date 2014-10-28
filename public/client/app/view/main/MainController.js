@@ -67,6 +67,11 @@ Ext.define('client.view.main.MainController', {
                 },
                 title: 'Абоненты'
             });
+        } else if (menuItem === 'Импорт') {
+            this.createTab(menuItem, {
+                xtype: 'import',
+                title: 'Импорт'
+            });
         }
 
     },
