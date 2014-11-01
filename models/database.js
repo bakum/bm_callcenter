@@ -41,7 +41,7 @@ module.exports = function (options) {
         if (fn)
             database.client.sync({force: f}).success(fn);
         else
-            database.client.sync({force: f});
+            database.client.sync({force: f}).success(fillfullTable);
     };
 
     var mod = require('./models.js')(database);

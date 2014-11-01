@@ -78,7 +78,7 @@ Ext.define('client.view.import.Import', {
                     width: 100,
                     handler: 'onExport',
                     items: [{
-                        iconCls: 'ticket'
+                        iconCls: 'icon-disk'
                     }]
                 }]
         }

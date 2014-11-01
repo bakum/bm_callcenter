@@ -14,6 +14,7 @@ Ext.define('client.Application', {
     views: [
         'client.view.login.Login',
         'client.view.kontr.Kontr',
+        'client.view.kontr.Detail',
         'client.view.main.Main'
     ],
     

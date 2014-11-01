@@ -9,6 +9,7 @@ Ext.define('client.view.kontr.KontrModel', {
     stores: {
         kontragents: {
             model: 'Kontragents',
+            storeId:'kontrstore',
             autoLoad: true,
             autoSync: false,
             autoDestroy: true,

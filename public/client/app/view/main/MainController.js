@@ -77,6 +77,14 @@ Ext.define('client.view.main.MainController', {
     },
 
     onViewKontragent: function(view, rec) {
-
+        console.log(rec);
+        this.createTab('Абонент - '+rec.data.fullname, {
+            xtype: 'kontrdetail',
+            viewModel: {
+                data: {
+                    theKontragent: rec
+                }
+            }
+        });
     }
 });

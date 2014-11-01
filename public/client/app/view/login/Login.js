@@ -16,7 +16,6 @@ Ext.define("client.view.login.Login",{
     items: {
         xtype: 'form',
         itemId: 'loginform',
-        enableKeyEvents:true,
         reference: 'form',
         items: [{
             xtype: 'textfield',
@@ -24,7 +23,17 @@ Ext.define("client.view.login.Login",{
             itemId: 'username',
             fieldLabel: 'Логин',
             emptyText: 'username',
-            allowBlank: false
+            enableKeyEvents:true,
+            allowBlank: false,
+            listeners:{
+                specialKey: function(field, el)
+                {
+                    if(el.getKey() == Ext.EventObject.ENTER)
+                    {
+                        Ext.getCmp('login-button').fireEvent('click');
+                    }
+                }
+            }
         }, {
             xtype: 'textfield',
             name: 'password',
@@ -32,7 +41,17 @@ Ext.define("client.view.login.Login",{
             inputType: 'password',
             fieldLabel: 'Пароль',
             emptyText: 'password',
-            allowBlank: false
+            enableKeyEvents:true,
+            allowBlank: false,
+            listeners:{
+                specialKey: function(field, el)
+                {
+                    if(el.getKey() == Ext.EventObject.ENTER)
+                    {
+                        Ext.getCmp('login-button').fireEvent('click');
+                    }
+                }
+            }
         }, {
             xtype: 'displayfield',
             hideEmptyLabel: false,
@@ -45,15 +64,6 @@ Ext.define("client.view.login.Login",{
             listeners: {
                 click: 'onLoginClick'
             }
-        }],
-        listeners:{
-            specialKey: function(field, el)
-            {
-                if(el.getKey() == Ext.EventObject.ENTER)
-                {
-                    Ext.getCmp('login-button').fireEvent('click');
-                }
-            }
-        }
+        }]
     }
 });

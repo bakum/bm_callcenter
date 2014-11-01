@@ -13,5 +13,15 @@ Ext.define('client.model.Kontragents', {
         { name: 'DIVISIONId', reference: 'Divisions' },
         { name: 'KONTRAGENTId', reference: 'Kontragents' }
 
-    ]
+    ],
+    proxy: {
+        type: 'ajax',
+        api: {
+            read: 'directapi/kontragents/get',
+            update: 'directapi/kontragents/update'
+        },
+        reader: {
+            type: 'json'
+        }
+    }
 });

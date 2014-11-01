@@ -9,14 +9,18 @@ var https = require('https')
 var db_options = require('../models/options.js')
     , db = require('../models/database.js')(db_options());
 
-app.set('port', process.env.PORT || 3008);
-app.set('ports', process.env.PORT || 3009);
-db.sync(process.env.FORCE_CREATE || false);
+app.set('port', process.env.PORT   || 3008);
+app.set('ports', process.env.PORTS || 3009);
+db.sync(process.env.FORCE_CREATE   || false);
 
-var server = app.listen(app.get('port'), function() {
+var server = app.listen(app.get('port'), function(err) {
+    if (err)
+        console.log('Error serving https proxy request: %s', err.message);
   debug('Express server listening on port ' + server.address().port);
   console.log("Express server listening on port " + app.get('port'));
 });
-https.createServer(credentials, app).listen(app.get('ports'), function () {
+https.createServer(credentials, app).listen(app.get('ports'), function (err) {
+    if (err)
+        console.log('Error serving https proxy request: %s', err.message);
     console.log('Express https server listening on port ' + app.get('ports'));
 });

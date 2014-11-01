@@ -160,10 +160,10 @@ Ext.define('client.view.main.Main', {
             items: [{
                 title: 'Dashboard',
                 bodyCls: 'app-dashboard',
-                html: '<h2>asdasdasaasdasda</h2>',
-                listeners: {
+                html: '<h2>asdasdasaasdasda</h2>'
+                /*listeners: {
                     viewkontragent: 'onViewKontragent'
-                }
+                }*/
             }]
         }
     ]

@@ -16,7 +16,7 @@ Ext.define('client.view.import.ImportController', {
                 success: function (fp, o) {
                     var grid = my.lookupReference('filegrid'),
                         store = grid.getBind().store.getValue();
-                    console.log(store);
+                    //console.log(store);
                     store.add([
                         {filename:Ext.decode(o.response.responseText).file}
                     ]);

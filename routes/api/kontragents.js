@@ -14,6 +14,21 @@ var Kontragents = {
 
     },
 
+    update: function(req, res) {
+        Kontr.find(req.body.id).success(function (anotherKontr) {
+            if (anotherKontr) {
+                anotherKontr.updateAttributes(req.body).success(function () {
+                    res.send({status: 'success'});
+                }).error(function (err) {
+                    res.status(416).end();
+                });
+            }
+        }).error(function (err) {
+            res.status(416).end();
+        })
+
+    },
+
     list: function (req, res) {
         Kontr.findAll({limit: req.query.limit, offset: req.query.start}).success(function (kontr) {
             Kontr.count().success(function (c) {

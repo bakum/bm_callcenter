@@ -12,24 +12,29 @@ Ext.define('client.view.kontr.Kontr', {
     viewModel: {
         type: 'kontr'
     },
+
+    bind: {
+        store: '{kontragents}'
+    },
+
     plugins: [
         Ext.create('Ext.grid.plugin.RowEditing', {
 
             listeners: {
                 cancelEdit: function (rowEditing, context) {
 
-                    var grid = rowEditing.grid,
-                        store = grid.getBind().store.getValue();
+                    var store = Ext.getStore('kontrstore');
+                    console.log(store);
                     if (context.record.phantom) {
                         store.remove(context.record);
                     }
                 },
-                edit : function(rowEditing, context){
-                    rowEditing.grid.getBind().store.getValue().sync();
+                edit: function (rowEditing, context) {
+                    console.log(Ext.getStore('kontrstore'));
+                    Ext.getStore('kontrstore').sync();
                 }
             },
             clicksToMoveEditor: 2,
-            reference: 'rowEdit',
             useNull: false,
             autoCancel: true,
             pluginId: 'rowediting',
@@ -38,7 +43,6 @@ Ext.define('client.view.kontr.Kontr', {
             errorSummary: true
         })
     ],
-    bind: '{kontragents}',
     columns: [
         {
             xtype: 'actioncolumn',
@@ -54,9 +58,9 @@ Ext.define('client.view.kontr.Kontr', {
             hidden: true,
             xtype: 'numbercolumn',
             align: 'right',
-            format:'0',
+            format: '0',
             /*flex: 1,
-            sortable: true,*/
+             sortable: true,*/
             dataIndex: 'id'
             //editor: {xtype: 'numberfield', allowBlank: true}
         },
