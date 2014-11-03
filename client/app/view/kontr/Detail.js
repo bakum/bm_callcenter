@@ -1,5 +1,5 @@
 Ext.define('client.view.kontr.Detail', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.tab.Panel',
     alias: 'widget.kontrdetail',
 
     requires: [
@@ -15,10 +15,10 @@ Ext.define('client.view.kontr.Detail', {
     bind: {
         title: 'Абонент - {theKontragent.fullname}'
     },
-    layout: {
+    /*layout: {
         type: 'vbox',
         align: 'stretch'
-    },
+    },*/
     componentCls: 'kontr-detail',
     bodyPadding: 5,
 
@@ -26,94 +26,103 @@ Ext.define('client.view.kontr.Detail', {
     viewModel: {
         type: 'kontrdetail'
     },
-
-    tbar: [{
-        text: 'Сохранить',
-        handler: 'onSaveClick'
-    }],
     items: [
         {
-            xtype: 'component',
-            bind: '{theKontragent.fullname}',
-            cls: 'title',
-            margin: '0 0 5 0'
-        },
-        {
-            xtype: 'form',
-
-            border: false,
-            maxWidth: 700,
-            //height: 200,
-            reference: 'form',
-            defaults: {
-                anchor: '100%'
-            },
-            items: [
-
+            title:'Общая информация',
+            bodyPadding: 10,
+            layout: {
+             type: 'vbox',
+             align: 'stretch'
+             },
+            tbar: [{
+                text: 'Сохранить',
+                handler: 'onSaveClick'
+            }],
+            items:[
                 {
-                    xtype: 'textfield',
-                    fieldLabel: 'Имя',
-                    allowBlank: false,
+                    xtype: 'component',
                     bind: '{theKontragent.fullname}',
-                    publishes: ['value']
+                    cls: 'title',
+                    margin: '0 0 10 0'
                 },
                 {
-                    xtype: 'textfield',
-                    fieldLabel: 'Полное имя',
-                    allowBlank: true,
-                    bind: '{theKontragent.namefull}',
-                    publishes: ['value']
-                },
-                {
-                    xtype: 'textfield',
-                    fieldLabel: 'ИНН',
-                    allowBlank: true,
-                    bind: '{theKontragent.inn}',
-                    publishes: ['value']
-                },
-                {
-                    xtype: 'textfield',
-                    fieldLabel: 'ОКПО',
-                    allowBlank: true,
-                    bind: '{theKontragent.okpo}',
-                    publishes: ['value']
-                },
-                /*{
-                 xtype: 'combobox',
-                 fieldLabel: 'Подразделение',
-                 allowBlank: false,
-                 //autoSelect:true,
-                 queryMode:'remote',
-                 forceSelection: true,
-                 valueField: 'id',
-                 displayField: 'u_name',
-                 publishes: ['value'],
-                 store: Ext.create('Ext.data.Store',{
-                 autoLoad: true,
-                 fields: ['id', 'u_name'],
-                 proxy: {
-                 type: 'rest',
-                 url: '/directapi/users',
-                 reader: {
-                 type: 'json'
-                 },
+                    xtype: 'form',
+                    border: false,
+                    maxWidth: 700,
+                    //height: 200,
+                    reference: 'form',
+                    defaults: {
+                        anchor: '100%'
+                    },
+                    items: [
 
-                 writer: {
-                 type: 'json',
-                 encode: false
-                 }
-                 }
-                 }),
-                 bind: '{theKontragent.USERId}'
-                 },*/
-                {
-                    xtype: 'textareafield',
-                    fieldLabel: 'Адрес',
-                    allowBlank: true,
-                    bind: '{theKontragent.adress}',
-                    publishes: ['value']
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Имя',
+                            allowBlank: false,
+                            bind: '{theKontragent.fullname}',
+                            publishes: ['value']
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Полное имя',
+                            allowBlank: true,
+                            bind: '{theKontragent.namefull}',
+                            publishes: ['value']
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'ИНН',
+                            allowBlank: true,
+                            bind: '{theKontragent.inn}',
+                            publishes: ['value']
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'ОКПО',
+                            allowBlank: true,
+                            bind: '{theKontragent.okpo}',
+                            publishes: ['value']
+                        },
+                        /*{
+                         xtype: 'combobox',
+                         fieldLabel: 'Подразделение',
+                         allowBlank: false,
+                         //autoSelect:true,
+                         queryMode:'remote',
+                         forceSelection: true,
+                         valueField: 'id',
+                         displayField: 'u_name',
+                         publishes: ['value'],
+                         store: Ext.create('Ext.data.Store',{
+                         autoLoad: true,
+                         fields: ['id', 'u_name'],
+                         proxy: {
+                         type: 'rest',
+                         url: '/directapi/users',
+                         reader: {
+                         type: 'json'
+                         },
+
+                         writer: {
+                         type: 'json',
+                         encode: false
+                         }
+                         }
+                         }),
+                         bind: '{theKontragent.USERId}'
+                         },*/
+                        {
+                            xtype: 'textareafield',
+                            fieldLabel: 'Адрес',
+                            allowBlank: true,
+                            bind: '{theKontragent.adress}',
+                            publishes: ['value']
+                        }
+                    ]
                 }
             ]
+
         },
         {
             xtype: 'gridpanel',
@@ -192,19 +201,19 @@ Ext.define('client.view.kontr.Detail', {
                 }
             ],
             bbar:[
-
-            ],
-            dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
                     bind: {
                         store: '{contacts}'
                     },   // same store GridPanel is using
-                    dock: 'bottom',
+                    //dock: 'bottom',
                     //pageSize: 3,
                     displayInfo: true,
                     emptyMsg: "Нет контактов для отображения"
-                },
+                }
+
+            ],
+            dockedItems: [
 
                 {
                     xtype: 'toolbar',

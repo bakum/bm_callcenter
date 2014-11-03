@@ -48,8 +48,9 @@ var Contacts = {
             //Prop = filter[0].property,
             val = filter[0].value;
 
-        Cont.find({where: {KONTRAGENTId: val},limit: req.query.limit, offset: req.query.start}).success(function (con) {
+        Cont.findAll({where: {KONTRAGENTId: val},limit: req.query.limit, offset: req.query.start}).success(function (con) {
             Cont.count().success(function (c) {
+                console.log(con);
                 var result = {
                     setlist: con,
                     totalCount: c
