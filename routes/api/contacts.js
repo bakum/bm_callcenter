@@ -5,11 +5,26 @@ var db_options = require('../../models/options.js')
 
 var Contacts = {
 
-    list: function (req, res) {
+    listDetail: function (req, res) {
         var filter = JSON.parse(req.query.filter),
-            KonId = filter[0].value;
+            //Prop = filter[0].property,
+            val = filter[0].value;
 
-        Cont.find({where: {KONTRAGENTId: KonId},limit: req.query.limit, offset: req.query.start}).success(function (con) {
+        Cont.find({where: {KONTRAGENTId: val},limit: req.query.limit, offset: req.query.start}).success(function (con) {
+            Cont.count().success(function (c) {
+                var result = {
+                    setlist: con,
+                    totalCount: c
+                };
+                res.json(result);
+            })
+        }).error(function (err) {
+            res.status(416).end();
+        })
+    },
+
+    list: function (req, res) {
+        Cont.findAll({limit: req.query.limit, offset: req.query.start}).success(function (con) {
             Cont.count().success(function (c) {
                 var result = {
                     setlist: con,

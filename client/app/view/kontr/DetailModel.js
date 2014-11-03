@@ -14,7 +14,7 @@ Ext.define('client.view.kontr.DetailModel', {
             pageSize: 15,
             remoteFilter: true,
             filters: [{
-                property: 'kontragId',
+                property: 'KONTRAGENTId',
                 value: '{theKontragent.id}'
             }],
             proxy: {

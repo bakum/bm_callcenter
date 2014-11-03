@@ -11,7 +11,7 @@ router.get('/loggedin', usrs.autstate);
 router.post('/autuser', usrs.login);
 router.get('/logout', usrs.logout);
 router.get('/kontragents', kontr.list);
-router.get('/contacts', con.list);
+router.get('/contacts', con.listDetail);
 router.put('/kontragents/:id', kontr.edit);
 router.post('/kontragents', kontr.create);
 router.post('/kontragents/update', kontr.update);
