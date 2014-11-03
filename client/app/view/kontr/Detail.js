@@ -20,7 +20,7 @@ Ext.define('client.view.kontr.Detail', {
         align: 'stretch'
     },
     componentCls: 'kontr-detail',
-    bodyPadding: 20,
+    bodyPadding: 5,
 
     controller: 'kontrdetail',
     viewModel: {
@@ -36,7 +36,7 @@ Ext.define('client.view.kontr.Detail', {
             xtype: 'component',
             bind: '{theKontragent.fullname}',
             cls: 'title',
-            margin: '0 0 10 0'
+            margin: '0 0 5 0'
         },
         {
             xtype: 'form',
@@ -46,8 +46,8 @@ Ext.define('client.view.kontr.Detail', {
             //height: 200,
             reference: 'form',
             defaults: {
-             anchor: '100%'
-             },
+                anchor: '100%'
+            },
             items: [
 
                 {
@@ -112,12 +112,121 @@ Ext.define('client.view.kontr.Detail', {
                     allowBlank: true,
                     bind: '{theKontragent.adress}',
                     publishes: ['value']
-                },
-                {
-                    xtype:'grid',
-                    margin: '15 0 0 0'
                 }
             ]
+        },
+        {
+            xtype: 'gridpanel',
+            title: 'Контактные данные',
+            //height: 300,
+            reference: 'grid',
+            margin: '10 0 0 0',
+            bind: {
+                store: '{contacts}'
+            },
+            plugins: [
+                Ext.create('Ext.grid.plugin.RowEditing', {
+
+                    listeners: {
+                        cancelEdit: function (rowEditing, context) {
+
+                            var store = Ext.getStore('conrstore');
+                            console.log(store);
+                            if (context.record.phantom) {
+                                store.remove(context.record);
+                            }
+                        },
+                        edit: function (rowEditing, context) {
+                            console.log(Ext.getStore('conrstore'));
+                            Ext.getStore('conrstore').sync();
+                        }
+                    },
+                    clicksToMoveEditor: 2,
+                    useNull: false,
+                    autoCancel: true,
+                    pluginId: 'rowconediting',
+                    saveBtnText: 'Сохранить',
+                    cancelBtnText: 'Отменить',
+                    errorSummary: false
+                })
+            ],
+            columns: [
+                {
+                    text: 'ID',
+                    hidden: true,
+                    xtype: 'numbercolumn',
+                    align: 'right',
+                    format: '0',
+                    /*flex: 1,
+                     sortable: true,*/
+                    dataIndex: 'id'
+                    //editor: {xtype: 'numberfield', allowBlank: true}
+                },
+                {
+                    text: 'Ссылка',
+                    hidden: false,
+                    xtype: 'numbercolumn',
+                    align: 'right',
+                    format: '0',
+                    /*flex: 1,
+                     sortable: true,*/
+                    dataIndex: 'KONTRAGENTId'
+                },
+                {
+                    text: 'Телефон',
+                    header: "Телефон",
+                    hidden: false,
+                    flex: 1,
+                    sortable: true,
+                    dataIndex: 'phone',
+                    editor: {xtype: 'textfield', allowBlank: false}
+                },
+                {
+                    text: 'E-Mail',
+                    header: "E-Mail",
+                    hidden: false,
+                    flex: 1,
+                    sortable: true,
+                    dataIndex: 'email',
+                    editor: {xtype: 'textfield'}
+                }
+            ],
+            bbar:[
+
+            ],
+            dockedItems: [
+                {
+                    xtype: 'pagingtoolbar',
+                    bind: {
+                        store: '{contacts}'
+                    },   // same store GridPanel is using
+                    dock: 'bottom',
+                    //pageSize: 3,
+                    displayInfo: true,
+                    emptyMsg: "Нет контактов для отображения"
+                },
+
+                {
+                    xtype: 'toolbar',
+                    items: [
+                        {
+                            text: 'Добавить',
+                            iconCls: 'icon-user-add',
+                            handler: 'onCreateContact'
+                        },
+                        {
+                            text: 'Удалить',
+                            itemId: 'removeContact',
+                            iconCls: 'icon-delete-user',
+                            disabled: true,
+                            handler: 'onContClickDelete'
+                        }
+                    ]
+                }
+            ],
+            listeners: {
+                selectionchange: 'onContSelection'
+            }
         }
     ]
 })

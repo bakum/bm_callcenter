@@ -10,8 +10,8 @@ Ext.define('client.view.kontr.DetailModel', {
             storeId:'conrstore',
             autoLoad: true,
             autoSync: false,
-            autoDestroy: true,
-            pageSize: 15,
+            autoDestroy: false,
+            pageSize: 10,
             remoteFilter: true,
             filters: [{
                 property: 'KONTRAGENTId',
@@ -20,7 +20,7 @@ Ext.define('client.view.kontr.DetailModel', {
             proxy: {
                 type: 'rest',
                 url: '/directapi/contacts',
-                appendId: true,
+                //appendId: true,
                 reader: {
                     type: 'json',
                     rootProperty: 'setlist',

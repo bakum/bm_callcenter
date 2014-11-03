@@ -15,11 +15,12 @@
         "debug": "~2.0.0",
         "ejs": "~0.8.5",
         "nconf": "~0.6.7",
-        "sequelize": "2.0.0-rc2",
+        "sequelize": "~2.0.0",
         "express-session": "1.9.1",
         "crypto": "0.0.3",
         "formidable":"1.0.15",
         "asterisk-manager":"0.1.12",
-        "csvtojson":"*"
+        "csvtojson":"*",
+        "forever-monitor":"*"
     }
 }

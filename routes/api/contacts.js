@@ -5,6 +5,44 @@ var db_options = require('../../models/options.js')
 
 var Contacts = {
 
+    create: function(req, res) {
+        req.body.id = null;
+        Cont.create(req.body).success(function (con) {
+            res.send({status: 'success'})
+        }).error(function (err) {
+            res.status(416).end();
+        })
+    },
+
+    update: function(req, res) {
+        Cont.find(req.body.id).success(function (con) {
+            if (con) {
+                con.updateAttributes(req.body).success(function () {
+                    res.send({status: 'success'});
+                }).error(function (err) {
+                    res.status(416).end();
+                });
+            }
+        }).error(function (err) {
+            res.status(416).end();
+        })
+
+    },
+
+    edit: function (req, res) {
+        Cont.find(req.params.id).success(function (con) {
+            if (con) {
+                con.updateAttributes(req.body).success(function () {
+                    res.send({status: 'success'});
+                }).error(function (err) {
+                    res.status(416).end();
+                });
+            }
+        }).error(function (err) {
+            res.status(416).end();
+        })
+    },
+
     listDetail: function (req, res) {
         var filter = JSON.parse(req.query.filter),
             //Prop = filter[0].property,
@@ -34,6 +72,20 @@ var Contacts = {
             })
         }).error(function (err) {
             res.status(416).end();
+        })
+    },
+
+    del: function (req, res) {
+        Cont.find(req.params.id).success(function (con) {
+            if (con) {
+                con.destroy().success(function () {
+                    res.send({status: 'success'})
+                }).error(function (err) {
+                    res.status(416).end();
+                });
+            } else {
+                res.status(416).end();
+            }
         })
     }
 
