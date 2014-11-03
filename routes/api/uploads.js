@@ -27,6 +27,8 @@ var Upfile = {
                             var csvConverter = new Converter();
                             csvConverter.on("end_parsed", function (jsonObj) {
                                 console.log(jsonObj); //here is your result json object
+                            }).on("error", function(err){
+                                console.log(err);
                             });
                             fs.createReadStream(csvFileName).pipe(csvConverter);
                         }

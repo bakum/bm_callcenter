@@ -10,8 +10,8 @@ Ext.define('client.model.Kontragents', {
         { name: 'kpp', type: 'string' },
         { name: 'namefull', type: 'string' },
         { name: 'ur_fiz', type: 'bool',defaultValue:0,useNull:false },
-        { name: 'DIVISIONId', reference: 'Divisions' },
-        { name: 'KONTRAGENTId', reference: 'Kontragents' }
+        { name: 'USERId', reference: 'User' },
+        { name: 'adress', type: 'string'}
 
     ],
     proxy: {

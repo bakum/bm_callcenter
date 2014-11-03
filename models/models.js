@@ -65,7 +65,8 @@ module.exports = function (db) {
                 okpo: {type: Sequelize.STRING(50), allowNull: true},
                 kpp: {type: Sequelize.STRING(50), allowNull: true},
                 namefull: {type: Sequelize.STRING(200), allowNull: false},
-                ur_fiz: {type: Sequelize.INTEGER(1), allowNull: false, defaultValue: 0}
+                ur_fiz: {type: Sequelize.INTEGER(1), allowNull: false, defaultValue: 0},
+                adress: {type: Sequelize.TEXT, allowNull: true}
             },
             {
                 freezeTableName: true,
@@ -73,7 +74,6 @@ module.exports = function (db) {
             }),
         app_contact_detail: Client.define('CONTACT_DETAILS', {
                 id: {type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
-                adress: {type: Sequelize.STRING(1000), allowNull: true},
                 phone: {type: Sequelize.STRING(15), allowNull: true},
                 email: {type: Sequelize.STRING(100), allowNull: true}
             },
@@ -126,9 +126,8 @@ module.exports = function (db) {
     self.app_users.hasMany(self.app_divisions);
     self.app_groups.hasMany(self.app_groupmembers);
     self.app_users.hasMany(self.app_groupmembers);
-    self.app_divisions.hasMany(self.app_kontragents);
+    self.app_users.hasMany(self.app_kontragents);
     self.app_divisions.hasMany(self.app_divisions_sotr);
-    self.app_kontragents.hasMany(self.app_kontragents, {onDelete: 'CASCADE'});
     self.app_kontragents.hasMany(self.app_contact_detail, {onDelete: 'CASCADE'});
     self.app_compaigns.hasMany(self.app_compaigns_detail, {onDelete: 'CASCADE'});
     self.app_kontragents.hasMany(self.app_compaigns_detail, {onDelete: 'CASCADE'});

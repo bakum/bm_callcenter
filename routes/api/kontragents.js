@@ -6,6 +6,7 @@ var Kontragents = {
 
     create: function (req, res) {
         req.body.id = null;
+        req.body.USERId = req.session.user_id;
         Kontr.create(req.body).success(function (kontr) {
             res.send({status: 'success'})
         }).error(function (err) {

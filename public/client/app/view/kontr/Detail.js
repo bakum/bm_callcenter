@@ -31,21 +31,23 @@ Ext.define('client.view.kontr.Detail', {
         text: 'Сохранить',
         handler: 'onSaveClick'
     }],
-    items: [{
-        xtype: 'component',
-        bind: '{theKontragent.fullname}',
-        cls: 'title',
-        margin: '0 0 10 0'
-    },
+    items: [
+        {
+            xtype: 'component',
+            bind: '{theKontragent.fullname}',
+            cls: 'title',
+            margin: '0 0 10 0'
+        },
         {
             xtype: 'form',
+
             border: false,
             maxWidth: 700,
-            height: 200,
+            //height: 200,
             reference: 'form',
             defaults: {
-                anchor: '80%'
-            },
+             anchor: '100%'
+             },
             items: [
 
                 {
@@ -76,34 +78,44 @@ Ext.define('client.view.kontr.Detail', {
                     bind: '{theKontragent.okpo}',
                     publishes: ['value']
                 },
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Подразделение',
-                    allowBlank: false,
-                    //autoSelect:true,
-                    queryMode:'remote',
-                    forceSelection: true,
-                    valueField: 'id',
-                    displayField: 'fullname',
-                    publishes: ['value'],
-                    store: Ext.create('Ext.data.Store',{
-                        storeId:'DivStore',
-                        autoLoad: true,
-                        fields: ['id', 'fullname'],
-                        proxy: {
-                            type: 'rest',
-                            url: '/directapi/divisions',
-                            reader: {
-                                type: 'json'
-                            },
+                /*{
+                 xtype: 'combobox',
+                 fieldLabel: 'Подразделение',
+                 allowBlank: false,
+                 //autoSelect:true,
+                 queryMode:'remote',
+                 forceSelection: true,
+                 valueField: 'id',
+                 displayField: 'u_name',
+                 publishes: ['value'],
+                 store: Ext.create('Ext.data.Store',{
+                 autoLoad: true,
+                 fields: ['id', 'u_name'],
+                 proxy: {
+                 type: 'rest',
+                 url: '/directapi/users',
+                 reader: {
+                 type: 'json'
+                 },
 
-                            writer: {
-                                type: 'json',
-                                encode: false
-                            }
-                        }
-                    }),
-                    bind: '{theKontragent.DIVISIONId}'
+                 writer: {
+                 type: 'json',
+                 encode: false
+                 }
+                 }
+                 }),
+                 bind: '{theKontragent.USERId}'
+                 },*/
+                {
+                    xtype: 'textareafield',
+                    fieldLabel: 'Адрес',
+                    allowBlank: true,
+                    bind: '{theKontragent.adress}',
+                    publishes: ['value']
+                },
+                {
+                    xtype:'grid',
+                    margin: '15 0 0 0'
                 }
             ]
         }
