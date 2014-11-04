@@ -46,6 +46,7 @@ Ext.define("client.view.login.Login",{
             listeners:{
                 specialKey: function(field, el)
                 {
+                    //console.log(field);
                     if(el.getKey() == Ext.EventObject.ENTER)
                     {
                         Ext.getCmp('login-button').fireEvent('click');

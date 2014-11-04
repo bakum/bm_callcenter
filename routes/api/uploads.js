@@ -20,17 +20,6 @@ var Upfile = {
                         } else {
                             var result = {"success": true, "file": files.file.name};
                             res.json(result);
-
-                            var Converter = require("csvtojson").core.Converter;
-                            var fs = require("fs");
-                            var csvFileName = new_path;
-                            var csvConverter = new Converter();
-                            csvConverter.on("end_parsed", function (jsonObj) {
-                                console.log(jsonObj); //here is your result json object
-                            }).on("error", function(err){
-                                console.log(err);
-                            });
-                            fs.createReadStream(csvFileName).pipe(csvConverter);
                         }
                     });
                 });
